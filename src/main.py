@@ -1,20 +1,21 @@
 import time
+
+from data_manager import load_prices, save_price
 from market import Market
 from visualization import Visualization
-from data_manager import save_price, load_prices
 
-UPDATE_TIME = 5
+UPDATE_INTERVAL = 0.5
 
 market = Market()
-viz = Visualization()  # Crée l'instance au démarrage (plt.ion() s'active ici)
+viz = Visualization()
+
+market.start_background()
 
 while True:
-    # On récupère le prix du Bitcoin
-    price = market.get_btc_price()
-    # On sauve le prix dans le fichier CSV
-    save_price(price)
-    # On charge les prix depuis le fichier CSV
-    prices = load_prices()
-    # On affiche les prix
-    viz.show_prices(prices)
-    time.sleep(UPDATE_TIME)
+    price = market.get_price()
+    if price is not None:
+        print(price)
+        save_price(price)
+        prices = load_prices()
+        viz.show_prices(prices)
+    time.sleep(UPDATE_INTERVAL)

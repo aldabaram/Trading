@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 data/prices.csv
+data/portfolio.csv
+data/trades.csv

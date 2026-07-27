@@ -1,0 +1,12 @@
+USE_HISTORICAL = True  # Set to True to use historical data for simulation, False for live market data
+CLEAN_FILES = True  # Set to True to clean existing data files before starting the simulation
+UPDATE_INTERVAL = 0.1
+STARTING_USD = 1000
+VISUAL_UPDATE_INTERVAL = 100
+TRADING_FEE = 0.001
+HISTORICAL_DATA_FILE_2024_2026 = "data/historical/BTC_prices_2024_2026.csv"
+HISTORICAL_DATA_FILE_2022_2024 = "data/historical/BTC_prices_2022_2024.csv"
+HISTORICAL_DATA_FILE_2019_2024 = "data/historical/BTC_prices_2019_2024.csv"
+PRICE_HISTORY_FILE = "data/prices.csv"
+PORTFOLIO_HISTORY_FILE = "data/portfolio.csv"
+TRADES_HISTORY_FILE = "data/trades.csv"

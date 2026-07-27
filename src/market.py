@@ -1,17 +1,21 @@
 import json
 import threading
+from datetime import datetime
+
 import websocket
 
 
 class Market:
     def __init__(self):
         self.current_price = None
+        self.current_date = None
 
     def _on_message(self, ws, message):
         data = json.loads(message)
         price = data.get("p")
         if price is not None:
             self.current_price = float(price)
+            self.current_date = datetime.now()
 
     def start(self):
         connexion = websocket.WebSocketApp(
@@ -25,4 +29,9 @@ class Market:
         thread.start()
 
     def get_price(self):
-        return self.current_price
+        if self.current_price is None:
+            return None
+        return {
+            "date": self.current_date,
+            "price": self.current_price,
+        }
